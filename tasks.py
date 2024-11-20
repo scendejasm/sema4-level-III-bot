@@ -47,6 +47,10 @@ def consume_traffic_data():
 def process_traffic_data():
     for item in workitems.inputs:
         traffic_data = item.payload["traffic_data"]
+        validate_traffic_data(traffic_data)
+
+def validate_traffic_data(traffic_data):
+    return len(traffic_data["country"]) == 3
 
 def load_traffic_data_as_table():
     json_data = json.load_json_from_file(TRAFFIC_JSON_FILE_PATH)
